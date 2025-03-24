@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cramerton Airbnb Cleaners</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            padding: 16px;
+            max-width: 100%;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 24px;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+        
+        .cleaner-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 16px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        
+        .rank {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: #3498db;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .cleaner-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .cleaner-info {
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            color: #7f8c8d;
+        }
+        
+        .highlight {
+            background-color: #f0f7fb;
+            border-left: 3px solid #3498db;
+            padding: 8px;
+            margin: 12px 0;
+            font-size: 14px;
+            font-style: italic;
+        }
+        
+        .message-btn {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 100;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #7f8c8d;
+        }
+        
+        .message-text {
+            white-space: pre-line;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .copy-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 16px;
+        }
+        
+        .success-message {
+            color: #27ae60;
+            font-size: 14px;
+            margin-top: 8px;
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            .cleaner-cards {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+            
+            .cleaner-card {
+                margin-bottom: 0;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cramerton Airbnb Cleaners</h1>
+        <p class="subtitle">Cleaners who serve the Cramerton area for Casa Amor Stays properties</p>
+    </header>
+    
+    <div class="cleaner-cards">
+        <!-- Cleaner 1 -->
+        <div class="cleaner-card">
+            <div class="rank">1</div>
+            <h2 class="cleaner-name">Jacqueline</h2>
+            <p class="cleaner-info"><span class="info-label">Contact:</span> 980-255-1929</p>
+            <p class="cleaner-info"><span class="info-label">Price:</span> $65 flat rate per cleaning</p>
+            <p class="cleaner-info"><span class="info-label">Services:</span> Full house cleaning, changing linens, preparing for next guest</p>
+            <p class="cleaner-info"><span class="info-label">Areas:</span> Charlotte area including Cramerton</p>
+            <div class="highlight">Offers a flat rate specifically for Airbnbs with complete turnover service at a competitive price</div>
+            <button class="message-btn" onclick="openModal('message1')">View Introductory Message</button>
+        </div>
+        
+        <!-- Cleaner 2 -->
+        <div class="cleaner-card">
+            <div class="rank">2</div>
+            <h2 class="cleaner-name">Helen's Cleaning Services</h2>
+            <p class="cleaner-info"><span class="info-label">Contact:</span> 704-273-8592 (text)</p>
+            <p class="cleaner-info"><span class="info-label">Services:</span> Deep cleaning, regular, biweekly, monthly, vacation home, Airbnb</p>
+            <p class="cleaner-info"><span class="info-label">Areas:</span> Charlotte and other NC areas including Cramerton</p>
+            <div class="highlight">Extensive experience with vacation rentals and flexible scheduling options</div>
+            <button class="message-btn" onclick="openModal('message2')">View Introductory Message</button>
+        </div>
+        
+        <!-- Cleaner 5 -->
+        <div class="cleaner-card">
+            <div class="rank">3</div>
+            <h2 class="cleaner-name">Carolina Dream Clean</h2>
+            <p class="cleaner-info"><span class="info-label">Contact:</span> 980-580-8790</p>
+            <p class="cleaner-info"><span class="info-label">Services:</span> Professional Airbnb cleaning services, turnover cleaning</p>
+            <p class="cleaner-info"><span class="info-label">Areas:</span> Charlotte area including Cramerton</p>
+            <div class="highlight">Specializes in Airbnb turnover cleaning with professional service</div>
+            <button class="message-btn" onclick="openModal('message5')">View Introductory Message</button>
+        </div>
+        
+        <!-- Cleaner 7 -->
+        <div class="cleaner-card">
+            <div class="rank">4</div>
+            <h2 class="cleaner-name">April's Cleaning Services</h2>
+            <p class="cleaner-info"><span class="info-label">Contact:</span> 919-810-2205</p>
+            <p class="cleaner-info"><span class="info-label">Services:</span> Airbnb cleaning services</p>
+            <p class="cleaner-info"><span class="info-label">Areas:</span> North Carolina including Cramerton area</p>
+            <div class="highlight">Experienced with Airbnb cleaning throughout North Carolina</div>
+            <button class="message-btn" onclick="openModal('message7')">View Introductory Message</button>
+        </div>
+    </div>
+    
+    <!-- Modal for messages -->
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle" style="margin-bottom: 16px;"></h2>
+            <div id="modalMessage" class="message-text"></div>
+            <button id="copyBtn" class="copy-btn" onclick="copyMessage()">Copy Message</button>
+            <p id="successMessage" class="success-message">Message copied to clipboard!</p>
+        </div>
+    </div>
+    
+    <script>
+        // Message templates
+        const messages = {
+            message1: {
+                title: "Message for Jacqueline",
+                text: `Hello Jacqueline, 
+
+My name is [Your Name] from Casa Amor Stays. We manage Airbnb properties in Cramerton, NC and are looking for reliable cleaners with Airbnb experience.
+
+Your flat rate of $65 per cleaning with complete turnover service caught our attention. We'd love to discuss potentially working together for our Cramerton properties.
+
+Would you be available for a quick call to discuss our cleaning needs and your availability in the Cramerton area?
+
+Thank you,
+[Your Name]
+Casa Amor Stays`
+            },
+            message2: {
+                title: "Message for Helen's Cleaning Services",
+                text: `Hello Helen's Cleaning Services,
+
+My name is [Your Name] with Casa Amor Stays. We manage Airbnb properties in Cramerton, NC.
+
+We're impressed by your extensive experience with vacation rentals and flexible scheduling options. We're looking for reliable cleaners who understand the specific needs of Airbnb properties in the Cramerton area.
+
+Would you be interested in discussing our cleaning requirements and your availability for our Cramerton properties? We'd appreciate the opportunity to work with an experienced cleaner like yourself.
+
+Thank you,
+[Your Name]
+Casa Amor Stays`
+            },
+            message5: {
+                title: "Message for Carolina Dream Clean",
+                text: `Hello Carolina Dream Clean,
+
+I'm [Your Name] with Casa Amor Stays. We manage Airbnb properties in Cramerton, NC.
+
+We're looking for professional cleaners who specialize in Airbnb turnover cleaning, which we understand is your specialty. We need reliable, thorough cleaning services to maintain our properties' high standards in the Cramerton area.
+
+Would you be interested in discussing our specific needs and your availability for our Cramerton properties? We'd appreciate the opportunity to work with professionals who understand the Airbnb cleaning process.
+
+Thank you,
+[Your Name]
+Casa Amor Stays`
+            },
+            message7: {
+                title: "Message for April's Cleaning Services",
+                text: `Hello April's Cleaning Services,
+
+I'm [Your Name] with Casa Amor Stays. We manage Airbnb properties in Cramerton, NC.
+
+We're looking for experienced Airbnb cleaners, and we understand you have experience with Airbnb cleaning throughout North Carolina. We'd love to discuss potentially working together for our Cramerton properties.
+
+Would you be available for a conversation about our specific cleaning needs and your availability in the Cramerton area?
+
+Thank you,
+[Your Name]
+Casa Amor Stays`
+            }
+        };
+        
+        // Open modal with specific message
+        function openModal(messageId) {
+            const modal = document.getElementById('messageModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMessage = document.getElementById('modalMessage');
+            const successMessage = document.getElementById('successMessage');
+            
+            modalTitle.textContent = messages[messageId].title;
+            modalMessage.textContent = messages[messageId].text;
+            modal.style.display = 'block';
+            successMessage.style.display = 'none';
+            
+            // Store current message ID for copy function
+            modal.dataset.currentMessage = messageId;
+        }
+        
+        // Close modal
+        function closeModal() {
+            const modal = document.getElementById('messageModal');
+            modal.style.display = 'none';
+        }
+        
+        // Copy message to clipboard
+        function copyMessage() {
+            const modal = document.getElementById('messageModal');
+            const messageId = modal.dataset.currentMessage;
+            const messageText = messages[messageId].text;
+            const successMessage = document.getElementById('successMessage');
+            
+            navigator.clipboard.writeText(messageText).then(() => {
+                successMessage.style.display = 'block';
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 3000);
+            });
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('messageModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
